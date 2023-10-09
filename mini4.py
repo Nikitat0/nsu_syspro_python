@@ -2,7 +2,7 @@ def reverse_dict(src):
     dst = dict()
     repeated = set()
     for k, v in src.items():
-        if v in dst:
+        if v in dst and v not in repeated:
             dst[v] = (dst[v], )
             repeated.add(v)
         if v in repeated:
