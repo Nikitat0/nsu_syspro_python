@@ -5,13 +5,17 @@ def deprecated(f=None, since=None, will_be_removed=None):
     if f is None:
         return lambda f: deprecated(f, since, will_be_removed)
 
-    if since is None or will_be_removed is None:
-        return f
+    template = "Warning: function {} is deprecated{}. It will be removed in {}."
+    msg = template.format(
+        f.__name__,
+        "" if since is None else f" since version {since}",
+        "future versions" if will_be_removed is None
+        else f"version {will_be_removed}",
+    )
 
     @wraps(f)
     def wrapped(*args, **kwargs):
-        print(
-            f"Warning: function {f.__name__} is deprecated since version {since}. It will be removed {will_be_removed}")
+        print(msg)
         return f(*args, **kwargs)
     return wrapped
 
