@@ -5,12 +5,12 @@ def singleton(_class):
     _class.__instance__ = None
 
     @wraps(_class)
-    def f(*args):
+    def get_instance(*args):
         if _class.__instance__ is None:
             _class.__instance__ = _class(*args)
         return _class.__instance__
 
-    return f
+    return get_instance
 
 
 @singleton
@@ -24,7 +24,6 @@ class Counter():
     def get(self):
         return self.value
 
-print(Counter.__init__)
 Counter(2).inc()
 Counter(2).inc()
 assert Counter().get() == 4
