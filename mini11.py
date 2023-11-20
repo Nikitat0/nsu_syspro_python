@@ -6,19 +6,19 @@ def singleton(_class):
     initializer = _class.__init__
 
     @wraps(initializer)
-    def no_init(*args):
+    def no_init(self, *args, **kwargs):
         pass
 
     @wraps(constructor)
-    def singleton_constructor(cls, *_):
+    def singleton_constructor(cls, *args, **kwargs):
         if _class.__instance__ is None:
             _class.__instance__ = constructor(cls)
             initializer(_class.__instance__)
-            _class.__init__ = no_init
         return _class.__instance__
 
     _class.__instance__ = None
     _class.__new__ = singleton_constructor
+    _class.__init__ = no_init
     return _class
 
 
@@ -35,5 +35,5 @@ class Counter():
 
 
 Counter(2).inc()
-Counter(2).inc()
+Counter(value=2).inc()
 assert Counter().get() == 4
