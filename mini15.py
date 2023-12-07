@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-from time import time, sleep
+from time import time
 
 SIZE = int(input("Enter size (512): ") or 512)
 STEPS = int(input("Enter steps (128): ") or 128)
@@ -41,6 +41,6 @@ def game_of_life(field1, field2):
 
 
 field1, field2 = common_field, np.empty((SIZE, SIZE), np.bool_)
-print("NumPy time", game_of_life(field1, field2), "ms")
+print("NumPy time", game_of_life(field1, field2), "s")
 field1, field2 = common_field.tolist(), [[None] * SIZE for _ in range(SIZE)]
-print("Python time", game_of_life(field1, field2), "ms")
+print("Python time", game_of_life(field1, field2), "s")
