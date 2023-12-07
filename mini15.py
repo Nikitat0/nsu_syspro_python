@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from time import time, sleep
 
-SIZE = int(input("Enter size (1024): ") or 1024)
+SIZE = int(input("Enter size (512): ") or 512)
 STEPS = int(input("Enter steps (128): ") or 128)
 VISUALIZE = input("Type something to enable visualization: ") and True or False
 
