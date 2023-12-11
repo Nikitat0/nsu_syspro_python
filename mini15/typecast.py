@@ -26,4 +26,12 @@ with bench("NumPy without cast"):
         for j in range(len(trash)):
             for k in range(len(trash)):
                 np_array[i, j, k] = trash[i]
+
+trash = list(map(bool, trash))
+np_array = np.empty((len(trash), len(trash), len(trash)), np.int64)
+with bench("NumPy fallback"):
+    for i in range(len(trash)):
+        for j in range(len(trash)):
+            for k in range(len(trash)):
+                np_array[i, j, k] = trash[i]
 print(bench)
