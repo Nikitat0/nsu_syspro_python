@@ -14,18 +14,17 @@ shuffle(trash)
 np_array = np.empty((len(trash), len(trash), len(trash)), np.bool_)
 
 bench = Benchmark()
-with bench("NumPy with typecast"):
+with bench("NumPy-side typecast"):
     for i in range(len(trash)):
         for j in range(len(trash)):
             for k in range(len(trash)):
                 np_array[i, j, k] = trash[i]
 
-trash = list(map(bool, trash))
-with bench("NumPy without cast"):
+with bench("Explicit typecast"):
     for i in range(len(trash)):
         for j in range(len(trash)):
             for k in range(len(trash)):
-                np_array[i, j, k] = trash[i]
+                np_array[i, j, k] = bool(trash[i])
 
 trash = list(map(bool, trash))
 np_array = np.empty((len(trash), len(trash), len(trash)), np.int64)
