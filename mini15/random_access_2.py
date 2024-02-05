@@ -18,7 +18,13 @@ with bench("Numpy random access (index twice)"):
 with bench("Numpy random access (index once)"):
     for x, y, z in indexes:
         c = np_array[x, y, z]
+with bench("Numpy random access (index once 2d)"):
+    for x, y, z in indexes:
+        c = np_array[x, y]
 with bench("Python random access"):
     for x, y, z in indexes:
         c = py_array[x][y][z]
+with bench("Python random access 2d"):
+    for x, y, z in indexes:
+        c = py_array[x][y]
 print(bench)
